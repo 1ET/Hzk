@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Flex, WhiteSpace, NavBar, Button, List, InputItem, Toast } from 'antd-mobile';
+import { Flex, WhiteSpace, NavBar, Button, List, InputItem, Toast, WingBlank } from 'antd-mobile';
+
 import 'antd-mobile/dist/antd-mobile.css'
 import './login.css'
 import axios from '../../http'
@@ -19,6 +20,7 @@ class Login extends Component {
     }
     handleLogin = async () => {
         const { history } = this.props
+        console.log(this.props)
         const users = this.state
         const res = await axios.post(`users/login`, users)
         const { data, meta } = res.data
@@ -38,14 +40,16 @@ class Login extends Component {
                 <WhiteSpace size="sm" />
                 <Flex.Item>
                     <List>
-                        <InputItem
-                            value={this.state.uname}
-                            onChange={(v) => { this.changeState('uname', v) }}
-                        >账号</InputItem>
-                        <InputItem
-                            value={this.state.pwd}
-                            onChange={(v) => { this.changeState('pwd', v) }}
-                        >密码</InputItem>
+                        <WingBlank>
+                            <InputItem
+                                value={this.state.uname}
+                                onChange={(v) => { this.changeState('uname', v) }}
+                            >账号</InputItem>
+                            <InputItem
+                                value={this.state.pwd}
+                                onChange={(v) => { this.changeState('pwd', v) }}
+                            >密码</InputItem>
+                        </WingBlank>
                         <Button type="primary" style={{ marginTop: '4px' }} onClick={this.handleLogin}>登录</Button>
                     </List>
                 </Flex.Item>

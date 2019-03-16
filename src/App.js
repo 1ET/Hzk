@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import './App.css'
-import Login from './components/login/login'
+import RourerCom from './routers/router'
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Login />
+        <RourerCom />
       </div>
     )
   }
