@@ -1,29 +1,37 @@
 import React, { Component } from 'react'
 import { TabBar } from "antd-mobile"
 import Main from '../main/main'
-import Char from '../chat/chat'
+import Chat from '../chat/chat'
 import Mine from '../mine/mine'
 import News from '../news/news'
 class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedTab: 'redTab',
+            selectedTab: 'Main',
             hidden: false,
             fullScreen: true,
         }
     }
-    renderContent = pagrText => {
-        console.log(pagrText)
-        return (
-            <div>
-                <Main />
-                <Char />
-                <Mine />
-                <News />
-
-            </div>
-        )
+    renderContent = () => {
+        const selectedTab = this.state.selectedTab
+        console.log(selectedTab)
+        switch (selectedTab) {
+            case 'Main':
+                return < Main />
+                break;
+            case 'Chat':
+                return < News />
+                break;
+            case 'Mine':
+                return < Chat />
+                break;
+            case 'News':
+                return < Mine />
+                break;
+            default:
+                break;
+        }
     }
     render() {
         return (
@@ -46,33 +54,33 @@ class Home extends Component {
                         icon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/sifuoDUQdAFKAVcFGROC.svg) center center /  21px 21px no-repeat'
+                            background: 'url(/images/泽莫男爵.svg) center center /  21px 21px no-repeat'
                         }}
                         />
                         }
                         selectedIcon={<div style={{
                             width: '22px',
                             height: '22px',
-                            background: 'url(https://zos.alipayobjects.com/rmsportal/iSrlOTqrKddqbOmlvUfq.svg) center center /  21px 21px no-repeat'
+                            background: 'url(/images/复仇者联盟-幻视.svg) center center /  21px 21px no-repeat'
                         }}
                         />
                         }
-                        selected={this.state.selectedTab === 'blueTab'}
+                        selected={this.state.selectedTab === 'Main'}
                         onPress={() => {
                             this.setState({
-                                selectedTab: 'blueTab',
+                                selectedTab: 'Main',
                             });
                         }}
                         data-seed="logId"
                     >
-                        {this.renderContent('Life')}
+                        {this.renderContent()}
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/BTSsmHkPsQSPTktcXyTV.svg) center center /  21px 21px no-repeat'
+                                background: 'url(/images/灭霸.svg) center center /  21px 21px no-repeat'
                             }}
                             />
                         }
@@ -80,28 +88,28 @@ class Home extends Component {
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(https://gw.alipayobjects.com/zos/rmsportal/ekLecvKBnRazVLXbWOnE.svg) center center /  21px 21px no-repeat'
+                                background: 'url(/images/复仇者联盟-幻视.svg) center center /  21px 21px no-repeat'
                             }}
                             />
                         }
                         title="Koubei"
                         key="Koubei"
-                        selected={this.state.selectedTab === 'redTab'}
+                        selected={this.state.selectedTab === 'Chat'}
                         onPress={() => {
                             this.setState({
-                                selectedTab: 'redTab',
+                                selectedTab: 'Chat',
                             });
                         }}
                         data-seed="logId1"
                     >
-                        {this.renderContent('Koubei')}
+                        {this.renderContent()}
                     </TabBar.Item>
                     <TabBar.Item
                         icon={
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(https://zos.alipayobjects.com/rmsportal/psUFoAMjkCcjqtUCNPxB.svg) center center /  21px 21px no-repeat'
+                                background: 'url(/images/异人族-黑蝠王.svg) center center /  21px 21px no-repeat'
                             }}
                             />
                         }
@@ -109,34 +117,34 @@ class Home extends Component {
                             <div style={{
                                 width: '22px',
                                 height: '22px',
-                                background: 'url(https://zos.alipayobjects.com/rmsportal/IIRLrXXrFAhXVdhMWgUI.svg) center center /  21px 21px no-repeat'
+                                background: 'url(/images/复仇者联盟-幻视.svg) center center /  21px 21px no-repeat'
                             }}
                             />
                         }
                         title="Friend"
                         key="Friend"
-                        selected={this.state.selectedTab === 'greenTab'}
+                        selected={this.state.selectedTab === 'Mine'}
                         onPress={() => {
                             this.setState({
-                                selectedTab: 'greenTab',
+                                selectedTab: 'Mine',
                             });
                         }}
                     >
-                        {this.renderContent('Friend')}
+                        {this.renderContent()}
                     </TabBar.Item>
                     <TabBar.Item
-                        icon={{ uri: 'https://zos.alipayobjects.com/rmsportal/asJMfBrNqpMMlVpeInPQ.svg' }}
-                        selectedIcon={{ uri: 'https://zos.alipayobjects.com/rmsportal/gjpzzcrPMkhfEqgbYvmN.svg' }}
+                        icon={{ uri: '/images/捍卫者联盟-夜魔侠.svg' }}
+                        selectedIcon={{ uri: '/images/复仇者联盟-幻视.svg' }}
                         title="My"
                         key="my"
-                        selected={this.state.selectedTab === 'yellowTab'}
+                        selected={this.state.selectedTab === 'News'}
                         onPress={() => {
                             this.setState({
-                                selectedTab: 'yellowTab',
+                                selectedTab: 'News',
                             });
                         }}
                     >
-                        {this.renderContent('My')}
+                        {this.renderContent()}
                     </TabBar.Item>
                 </TabBar>
             </div>

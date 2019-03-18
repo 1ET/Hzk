@@ -25,6 +25,7 @@ class Login extends Component {
         const res = await axios.post(`users/login`, users)
         const { data, meta } = res.data
         if (meta.status === 200) {
+            localStorage.setItem('token', data.token)
             history.push('/')
         } else {
             Toast.fail(meta.msg, 1);
