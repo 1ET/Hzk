@@ -15,10 +15,9 @@ class Home extends Component {
     }
     renderContent = () => {
         const selectedTab = this.state.selectedTab
-        console.log(selectedTab)
         switch (selectedTab) {
             case 'Main':
-                return < Main />
+                return < Main history={this.props.history}/>
                 break;
             case 'Chat':
                 return < News />

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { SearchBar, WhiteSpace, WingBlank, Carousel, Grid, NoticeBar, Card, Badge } from 'antd-mobile';
 import axios from '../../http'
 
+
 const badgeStyle = {
   marginLeft: 12,
   padding: '0 3px',
@@ -68,7 +69,8 @@ class Main extends Component {
       let data = this.state.menuData.map((item, i) => {
         return {
           icon: `http://127.0.0.1:8086/public/menu/0${i + 1}.png`,
-          text: item.menu_name
+          text: item.menu_name,
+          id: i + 1
         }
       })
       const houseDataNew = this.arrFmt(this.state.houseData, 2, 2, 3)
@@ -78,6 +80,27 @@ class Main extends Component {
       })
     })
 
+  }
+  /**菜单功能 */
+  menuFeatures = (el) => {
+    const { text, id, icon } = el
+    switch (id) {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        return this.props.history.push(`details`, { query: { info: { text, id } } })
+        break;
+      case 5:
+        break;
+      case 6:
+        break;
+      case 7:
+        break;
+
+      default:
+        break;
+    }
   }
   render() {
     let CarouselTemp = this.state.imagesData.map((item, i) => {
@@ -168,8 +191,9 @@ class Main extends Component {
       < Grid
         data={this.state.data}
         isCarousel
-        onClick={_el => console.log(_el)}
-      />
+        onClick={el => {
+          this.menuFeatures(el)
+        }} />
       <WhiteSpace size="lg" />
       { /* 咨询 警告框 */}
       {infoTemp}
