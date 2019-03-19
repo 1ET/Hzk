@@ -5,6 +5,8 @@
   "dependencies": {
     "antd-mobile": "^2.2.9",
     "axios": "^0.18.0",
+    "echarts": "^4.1.0",
+    "echarts-for-react": "^2.0.15-beta.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.3.1",

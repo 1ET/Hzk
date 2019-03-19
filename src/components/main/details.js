@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavBar, Icon } from 'antd-mobile'
 import 'react-virtualized/styles.css'
-import { SearchBar, WhiteSpace, WingBlank, Carousel, Grid, NoticeBar, Card, Badge } from 'antd-mobile';
+import { Card, Badge } from 'antd-mobile';
 import { List } from 'react-virtualized'
 import axios from '../../http.js'
 const badgeStyle = {

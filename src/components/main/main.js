@@ -92,10 +92,12 @@ class Main extends Component {
         return this.props.history.push(`details`, { query: { info: { text, id } } })
         break;
       case 5:
+        return this.props.history.push(`map`, { query: { info: { text, id } } })
         break;
       case 6:
         break;
       case 7:
+        return this.props.history.push(`cal`, { query: { info: { text, id } } })
         break;
 
       default:
