@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { SearchBar, WhiteSpace, WingBlank, Carousel, Grid, NoticeBar, Card, Badge } from 'antd-mobile';
+import { SearchBar, WhiteSpace, Carousel, Grid, NoticeBar, Card, Badge } from 'antd-mobile';
 import axios from '../../http'
 
 
@@ -83,7 +83,7 @@ class Main extends Component {
   }
   /**菜单功能 */
   menuFeatures = (el) => {
-    const { text, id, icon } = el
+    const { text, id } = el
     switch (id) {
       case 1:
       case 2:

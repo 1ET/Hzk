@@ -17,16 +17,17 @@ class Home extends Component {
         const selectedTab = this.state.selectedTab
         switch (selectedTab) {
             case 'Main':
-                return < Main history={this.props.history}/>
+                return < Main history={this.props.history} />
                 break;
             case 'Chat':
-                return < News />
-                break;
-            case 'Mine':
                 return < Chat />
                 break;
-            case 'News':
+            case 'Mine':
                 return < Mine />
+                break;
+            case 'News':
+                return < News />
+
                 break;
             default:
                 break;
@@ -93,10 +94,10 @@ class Home extends Component {
                         }
                         title="Koubei"
                         key="Koubei"
-                        selected={this.state.selectedTab === 'Chat'}
+                        selected={this.state.selectedTab === 'News'}
                         onPress={() => {
                             this.setState({
-                                selectedTab: 'Chat',
+                                selectedTab: 'News',
                             });
                         }}
                         data-seed="logId1"
@@ -122,10 +123,10 @@ class Home extends Component {
                         }
                         title="Friend"
                         key="Friend"
-                        selected={this.state.selectedTab === 'Mine'}
+                        selected={this.state.selectedTab === 'Chat'}
                         onPress={() => {
                             this.setState({
-                                selectedTab: 'Mine',
+                                selectedTab: 'Chat',
                             });
                         }}
                     >
@@ -136,10 +137,10 @@ class Home extends Component {
                         selectedIcon={{ uri: '/images/复仇者联盟-幻视.svg' }}
                         title="My"
                         key="my"
-                        selected={this.state.selectedTab === 'News'}
+                        selected={this.state.selectedTab === 'Mine'}
                         onPress={() => {
                             this.setState({
-                                selectedTab: 'News',
+                                selectedTab: 'Mine',
                             });
                         }}
                     >

@@ -20,12 +20,12 @@ class Login extends Component {
     }
     handleLogin = async () => {
         const { history } = this.props
-        console.log(this.props)
         const users = this.state
         const res = await axios.post(`users/login`, users)
         const { data, meta } = res.data
         if (meta.status === 200) {
             localStorage.setItem('token', data.token)
+            localStorage.setItem('uid', data.uid)
             history.push('/')
         } else {
             Toast.fail(meta.msg, 1);
