@@ -4,7 +4,6 @@ import axios from '../../http'
 import { Grid, Button, Modal, Slider } from 'antd-mobile'
 
 import AvatarEditor from 'react-avatar-editor'
-import { Module } from 'module';
 let gridtext = [
   '看房记录',
   '我的订单',
@@ -69,14 +68,21 @@ class CoreImageModal extends React.Component {
   }
   componentDidMount = () => {
     const { modal2 } = this.props
-    console.log(modal2)
     this.setState({
       modal2,
       scale: 1
     })
   }
-  onClose = () => {
+  onClose = async () => {
     const { close } = this.props
+    if (this.editor) {
+      const canvasScaled = this.editor.getImageScaledToCanvas()
+      const imageData = canvasScaled.toDataURL()
+      const res = await axios.post(`my/avatar`, {
+        avatar: imageData
+      })
+      return close(false, imageData)
+    }
     close(false)
   }
   sliderChange = (v) => {
@@ -87,6 +93,7 @@ class CoreImageModal extends React.Component {
   sliderAfterChange = () => {
 
   }
+  setEditorRef = (editor) => this.editor = editor
   render() {
     return (
       <Modal
@@ -106,6 +113,7 @@ class CoreImageModal extends React.Component {
         wrapProps={{ onTouchStart: this.onWrapTouchStart }}
       >
         <AvatarEditor
+          ref={this.setEditorRef}
           image={this.props.fileData}
           width={150}
           height={150}
@@ -156,7 +164,8 @@ class Mine extends React.Component {
       })),
       isImageModal: false,
       isCoreModal: false,
-      fileData: null
+      fileData: null,
+      avatarPath: ''
     }
   }
 
@@ -172,9 +181,11 @@ class Mine extends React.Component {
     // 获取用户信息
     const user_id = localStorage.getItem('uid')
     const res = await axios.post(`my/info`, { user_id })
+    console.log(res)
     this.setState({
       data,
-      uname: res.data.data.username
+      uname: res.data.data.username,
+      avatarPath: res.data.data.avatar
     })
   }
   showImageModal = () => {
@@ -200,9 +211,10 @@ class Mine extends React.Component {
   openCoreeModal = () => {
 
   }
-  closeCoreeModal = (isShow) => {
+  closeCoreModal = (isShow, imageData) => {
     this.setState({
-      isCoreModal: isShow
+      isCoreModal: isShow,
+      avatarPath: imageData
     })
   }
   render() {
@@ -216,7 +228,7 @@ class Mine extends React.Component {
         {this.state.isCoreModal && < CoreImageModal
           modal2={this.state.isCoreModal}
           fileData={this.state.fileData}
-          close={this.closeCoreeModal}
+          close={this.closeCoreModal}
         />}
         <div className="my-title">
           <img src={'http://47.96.21.88:8086/' + 'public/my-bg.png'} alt="me" />

@@ -8,7 +8,7 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            selectedTab: 'Main',
+            selectedTab: 'Chat',
             hidden: false,
             fullScreen: true,
         }

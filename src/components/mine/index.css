@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+html {
+  touch-action: none;
+}
+
 .my-title {
   min-height: 300px;
   position: relative;
@@ -51,14 +55,17 @@
   color: #787d82;
   margin-top: 20px;
 }
+
 .my-menu.ui.grid>.row>.column {
   margin-top: 20px;
   margin-bottom: 10px;
   color: #808589;
 }
-.slider-list{
+
+.slider-list {
   height: 250px !important;
 }
+
 .my-menu.ui.grid>.row>.column div {
   margin-top: 115px;
 }

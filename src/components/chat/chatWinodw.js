@@ -17,7 +17,7 @@ const Chatlist = props => {
                         : 'chat-info-right'
                 }
             >
-                <img src={'http://127.0.0.1:8086/' + item.avatar} alt="" />
+                <img src={item.avatar} alt="" />
                 <span className={'info'}>{item.chat_msg}</span>
             </li>
         )
@@ -48,17 +48,18 @@ class ChatWindow extends Component {
         const { hiddenChatWindow, isShow } = this.props
         hiddenChatWindow(isShow)
     }
-    reseMsg = data => {
+    resMsg = data => {
         // console.log(data) // {content:"对方不在线"}
         if (data.content === '对方不在线') {
             return
         }
 
         // data->服务端返回的消息-》字符串
-        let temp = this.state.list
+        let temp = this.state.listdata
+        // console.log(temp)
         temp.push(JSON.parse(data.content))
         this.setState({
-            list: temp
+            listdata: temp
         })
     }
     componentDidMount = async () => {
@@ -94,16 +95,16 @@ class ChatWindow extends Component {
         console.log('发送消息')
         const { from_user, to_user, avatar } = this.props.item
         const { msgContent: chat_msg, listdata, client } = this.state
-        const data = {
+        let pdata = {
             id: Date.now(),
             from_user,
             to_user,
             avatar,
             chat_msg,
         }
-        client.emitEvent(IMEvent.msg_text_send, JSON.stringify(data))
+        client.emitEvent(IMEvent.MSG_TEXT_SEND, JSON.stringify(pdata))
         let temp = listdata
-        temp.push(data)
+        temp.push(pdata)
         this.setState({
             listdata: temp
         })
